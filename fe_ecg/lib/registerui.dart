@@ -58,7 +58,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-
                 registerWithEmailAndPassword(_email, _password);
               }
             },
