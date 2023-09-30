@@ -68,6 +68,18 @@ class _RegistrationFormState extends State<RegistrationForm> {
               Navigator.pushNamed(context, '/login');
             },
             child: Text('Back to Login'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/diagnosis');
+            },
+            child: Text('Diagnosis Disease'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/camdiagnosis');
+            },
+            child: Text(' Camera Diagnosis Disease'),
           )
         ],
       ),

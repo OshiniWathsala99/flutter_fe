@@ -6,6 +6,7 @@ import 'package:fe_ecg/loginui.dart';
 import 'package:fe_ecg/registerui.dart';
 import 'package:fe_ecg/diagnosisui.dart';
 import 'package:fe_ecg/homeui.dart';
+import 'package:fe_ecg/cameradiagnosisui.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.registration: (context) => RegistrationScreen(),
         AppRoutes.diagnosis: (context) =>
             DiagnosisScreen(), // Add the DiagnosisScreen route
+        AppRoutes.camdiagnosis: (context) =>
+            cameradiagnosisscreen(), // Add the DiagnosisScreen route
       },
     );
   }

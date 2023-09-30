@@ -65,7 +65,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/login');
             },
             child: Text('Back to Login'),
           )

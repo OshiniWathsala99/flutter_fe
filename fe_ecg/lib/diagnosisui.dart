@@ -26,8 +26,8 @@ class _MyAppState extends State<DiagnosisScreen> {
 
   Future Dignosis() async {
     if (_image != null) {
-      final uri =
-          Uri.parse('https://f6bc-112-134-168-201.ngrok-free.app/model/upload');
+      final uri = Uri.parse(
+          'https://c77f-112-134-168-201.ngrok-free.app/model/uploadoriginalcompatible');
       final request = http.MultipartRequest('POST', uri)
         ..files
             .add(await http.MultipartFile.fromPath('my_image', _image!.path));
