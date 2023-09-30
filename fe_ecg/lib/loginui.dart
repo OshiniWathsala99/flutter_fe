@@ -25,6 +25,7 @@ class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late String _email;
   late String _password;
+  late int suc = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +56,19 @@ class _LoginFormState extends State<LoginForm> {
           ),
           SizedBox(height: 16),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                loginWithEmailAndPassword(_email, _password);
+                final result =
+                    await loginWithEmailAndPassword(_email, _password);
+                setState(() {
+                  suc = result;
+                });
               }
             },
             child: Text('Login'),
           ),
+          Text('Result: $suc'),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/registration');
