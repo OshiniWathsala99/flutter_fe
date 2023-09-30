@@ -1,63 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:fe_ecg/app_routes.dart';
+import 'package:fe_ecg/registration.dart';
 
 class homeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Register'),
       ),
-      drawer: Drawer(
-        // Create a Drawer widget for the navigation menu
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'App Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                // Navigate to the Home screen (close the drawer first)
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.login),
-              title: Text('Login'),
-              onTap: () {
-                // Navigate to the Login screen (close the drawer first)
-                Navigator.pushNamed(context, AppRoutes.login);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Registration'),
-              onTap: () {
-                // Navigate to the Registration screen (close the drawer first)
-                Navigator.pushNamed(context, AppRoutes.registration);
-              },
-            ),
-            // Add more menu items as needed
-          ],
-        ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: RegistrationForm(),
       ),
-      body: Center(
-        child: Text(
-          'Welcome to the Home Screen!',
-          style: TextStyle(fontSize: 24.0),
-        ),
+    );
+  }
+}
+
+class RegistrationForm extends StatefulWidget {
+  @override
+  _RegistrationFormState createState() => _RegistrationFormState();
+}
+
+class _RegistrationFormState extends State<RegistrationForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late String _email;
+  late String _password;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          TextFormField(
+            decoration: InputDecoration(labelText: 'Email'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your email';
+              }
+              return null;
+            },
+            onSaved: (value) => _email = value!,
+          ),
+          TextFormField(
+            decoration: InputDecoration(labelText: 'Password'),
+            obscureText: true,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password';
+              }
+              return null;
+            },
+            onSaved: (value) => _password = value!,
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                registerWithEmailAndPassword(_email, _password);
+              }
+            },
+            child: Text('Register'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            },
+            child: Text('Back to Login'),
+          )
+        ],
       ),
     );
   }
