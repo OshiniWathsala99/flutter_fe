@@ -1,87 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:fe_ecg/registration.dart';
+import 'package:fe_ecg/BottomNavigationBarWidget.dart';
 
-class homeScreen extends StatelessWidget {
+class homeScreen extends StatefulWidget {
+  //final String userName = "John"; // Retrieve this from Firebase
+  String userName = "John";
+
+  //HomePage(this.userName);
+  homeScreen();
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<homeScreen> {
+  int currentIndex = 0;
+
+  void onTabTapped(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+
+    // Handle navigation based on the selected index
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/camdiagnosis');
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, '/history');
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: RegistrationForm(),
-      ),
-    );
-  }
-}
-
-class RegistrationForm extends StatefulWidget {
-  @override
-  _RegistrationFormState createState() => _RegistrationFormState();
-}
-
-class _RegistrationFormState extends State<RegistrationForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late String _email;
-  late String _password;
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Email'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email';
-              }
-              return null;
-            },
-            onSaved: (value) => _email = value!,
-          ),
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Password'),
-            obscureText: true,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your password';
-              }
-              return null;
-            },
-            onSaved: (value) => _password = value!,
-          ),
-          SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                registerWithEmailAndPassword(_email, _password);
-              }
-            },
-            child: Text('Register'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text('Hello ${widget.userName}'), // Display the user's name
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Let\'s Diagnosis your cardiovascular disease',
+              textAlign: TextAlign.center,
+            ),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/login');
+              Navigator.pushReplacementNamed(context, '/camdiagnosis');
             },
-            child: Text('Back to Login'),
+            child: Text('Diagnosis'),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/diagnosis');
+              Navigator.pushReplacementNamed(context, '/history');
             },
-            child: Text('Diagnosis Disease'),
+            child: Text('Diagnosis History'),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/camdiagnosis');
-            },
-            child: Text(' Camera Diagnosis Disease'),
-          )
         ],
+      ),
+      bottomNavigationBar: MyBottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: onTabTapped,
       ),
     );
   }

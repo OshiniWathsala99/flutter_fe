@@ -1,24 +1,22 @@
-import 'dart:async';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
-class CameraDiagnosisScreen extends StatefulWidget {
+class cameradiagnosisscreen extends StatefulWidget {
   @override
-  _CameraDiagnosisScreenState createState() => _CameraDiagnosisScreenState();
+  _MyAppHomePageState createState() => _MyAppHomePageState();
 }
 
-class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
-  File? _image;
+class _MyAppHomePageState extends State<cameradiagnosisscreen> {
+  File? _image; // Add ? to indicate it can be null
   String _predictedResult = "";
 
   Future getImageFromCamera() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(
       source: ImageSource.camera,
-      imageQuality: 100,
+      imageQuality: 100, // Set image quality to 100 (no compression)
     );
 
     if (pickedFile != null) {
@@ -32,7 +30,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 100,
+      imageQuality: 100, // Set image quality to 100 (no compression)
     );
 
     if (pickedFile != null) {
@@ -42,11 +40,11 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
     }
   }
 
-  Future<void> diagnoseOnIsolate() async {
+  Future<void> Dignosis() async {
     if (_image != null) {
       try {
         final uri = Uri.parse(
-            'https://8329-112-134-168-201.ngrok-free.app/model/uploadoriginalcompatible');
+            'https://1a4e-112-134-168-201.ngrok-free.app/model/uploadoriginalcompatible');
         final request = http.MultipartRequest('POST', uri)
           ..files
               .add(await http.MultipartFile.fromPath('my_image', _image!.path));
@@ -55,10 +53,8 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
         final response = await http.Response.fromStream(streamedResponse);
 
         if (response.statusCode == 200) {
-          final predictedResult =
-              await compute(parsePredictedResult, response.body);
           setState(() {
-            _predictedResult = predictedResult;
+            _predictedResult = response.body;
           });
         }
       } catch (e) {
@@ -71,14 +67,6 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
         _predictedResult = "No image selected.";
       });
     }
-  }
-
-  // Function to perform parsing and ML model inference
-  static Future<String> parsePredictedResult(String responseBody) async {
-    // Parse response and run ML model inference here
-    // Replace this with your actual model inference code
-    await Future.delayed(Duration(seconds: 2)); // Simulating processing time
-    return "Diagnosis result: $responseBody";
   }
 
   void _showSelectPhotoOptions(BuildContext context) {
@@ -123,7 +111,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Emotion Predictor'),
+        title: Text('Cardiovascular Detection'),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -131,18 +119,21 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
             children: <Widget>[
               _image == null
                   ? Text('Select an image.')
-                  : Image.file(_image!, height: 200.0, width: 200.0),
+                  : Image.file(_image!,
+                      height: 200.0,
+                      width: 200.0), // Add ! to indicate it's not null
               ElevatedButton(
                 onPressed: () {
-                  _showSelectPhotoOptions(context);
+                  _showSelectPhotoOptions(
+                      context); // Show the options for selecting photos
                 },
                 child: Text('Select Photo'),
               ),
               ElevatedButton(
                 onPressed: () async {
-                  await diagnoseOnIsolate();
+                  await Dignosis();
                 },
-                child: Text('Diagnose Disease'),
+                child: Text('Diagnosis Disease'),
               ),
               Text('Diagnosis: $_predictedResult'),
             ],

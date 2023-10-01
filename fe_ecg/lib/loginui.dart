@@ -26,6 +26,7 @@ class _LoginFormState extends State<LoginForm> {
   late String _email;
   late String _password;
   late int suc = 10;
+  String errorMessage = "";
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +64,24 @@ class _LoginFormState extends State<LoginForm> {
                     await loginWithEmailAndPassword(_email, _password);
                 setState(() {
                   suc = result;
+                  if (suc == 1) {
+                    Navigator.pushNamed(context, '/');
+                  }
+                  if (suc != 1) {
+                    errorMessage = "Something Went Wrong!";
+                  }
                 });
               }
             },
             child: Text('Login'),
           ),
-          Text('Result: $suc'),
+          if (errorMessage.isNotEmpty) // Display error message if not empty
+            Text(
+              errorMessage,
+              style: TextStyle(
+                color: Colors.red, // You can customize the color
+              ),
+            ),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/registration');
