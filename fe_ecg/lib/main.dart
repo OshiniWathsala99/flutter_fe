@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.diagnosis: (context) =>
             DiagnosisScreen(), // Add the DiagnosisScreen route
         AppRoutes.camdiagnosis: (context) =>
-            cameradiagnosisscreen(), // Add the DiagnosisScreen route
+            CameraDiagnosisScreen(), // Add the DiagnosisScreen route
       },
     );
   }
