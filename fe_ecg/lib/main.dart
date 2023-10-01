@@ -8,6 +8,7 @@ import 'package:fe_ecg/diagnosisui.dart';
 import 'package:fe_ecg/homeui.dart';
 import 'package:fe_ecg/cameradiagnosisui.dart';
 import 'package:fe_ecg/history.dart';
+import 'package:fe_ecg/verifydiagnosis.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.camdiagnosis: (context) =>
             cameradiagnosisscreen(), // Add the DiagnosisScreen route
         AppRoutes.history: (context) => historyscreen(),
+        AppRoutes.verification: (context) => VerificationScreen(),
       },
     );
   }

@@ -247,6 +247,12 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
                 },
                 child: Text('Diagnosis Disease'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/verify');
+                },
+                child: Text('Further Verification'),
+              ),
               Text('Diagnosis: $_disease_res'),
             ],
           ),
@@ -259,3 +265,4 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
     );
   }
 }
+//verification
