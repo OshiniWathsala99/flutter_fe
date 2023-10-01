@@ -6,4 +6,5 @@ class AppRoutes {
   static const String camdiagnosis = '/camdiagnosis';
   static const String history = '/history';
   static const String verification = '/verify';
+  static const String analyzing = '/analysing';
 }
