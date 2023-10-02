@@ -40,8 +40,10 @@ class MyApp extends StatelessWidget {
         AppRoutes.camdiagnosis: (context) =>
             cameradiagnosisscreen(), // Add the DiagnosisScreen route
         AppRoutes.history: (context) => historyscreen(),
-        AppRoutes.verification: (context) => VerificationScreen(),
-        AppRoutes.analyzing: (context) => AnalysingScreen(),
+        AppRoutes.verification: (context) =>
+            VerificationScreen(diseaseResult: AppRoutes.analyzing),
+        AppRoutes.analyzing: (context) =>
+            AnalysingScreen(diseaseResult: AppRoutes.camdiagnosis),
       },
     );
   }

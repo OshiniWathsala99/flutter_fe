@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 import 'package:fe_ecg/BottomNavigationBarWidget.dart';
+import 'package:fe_ecg/analysing.dart';
 
 class cameradiagnosisscreen extends StatefulWidget {
   @override
@@ -97,7 +98,7 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
     if (_image != null) {
       try {
         final uri = Uri.parse(
-            'https://1a4e-112-134-168-201.ngrok-free.app/model/uploadoriginalcompatible');
+            'https://ad27-112-134-168-201.ngrok-free.app/model/uploadoriginalcompatible');
         final request = http.MultipartRequest('POST', uri)
           ..files
               .add(await http.MultipartFile.fromPath('my_image', _image!.path));
@@ -121,7 +122,7 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
               if (predictionValue == 3)
                 _disease_res = "Supraventricular ectopic beat";
               if (predictionValue == 4)
-                _disease_res = "Ventricular ectopic beat)";
+                _disease_res = "Ventricular ectopic beat";
               if (predictionValue != 0 &&
                   predictionValue != 1 &&
                   predictionValue != 2 &&
@@ -147,7 +148,7 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
   Future<void> createRecord() async {
     // Define the API endpoint URL
     final apiUrl =
-        Uri.parse('https://1a4e-112-134-168-201.ngrok-free.app/model/save');
+        Uri.parse('https://ad27-112-134-168-201.ngrok-free.app/model/save');
 
     try {
       // Create a JSON payload with the data you want to send
@@ -244,6 +245,18 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
               ElevatedButton(
                 onPressed: () async {
                   await Dignosis();
+
+                  // Check if _disease_res is not empty before navigating
+                  if (_disease_res.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AnalysingScreen(
+                          diseaseResult: _disease_res,
+                        ),
+                      ),
+                    );
+                  }
                 },
                 child: Text('Diagnosis Disease'),
               ),
@@ -253,7 +266,7 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
                 },
                 child: Text('Further Verification'),
               ),
-              Text('Diagnosis: $_disease_res'),
+              //Text('Diagnosis: $_disease_res'),
             ],
           ),
         ),

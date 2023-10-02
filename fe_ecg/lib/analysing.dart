@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'dart:io';
 
 class AnalysingScreen extends StatelessWidget {
+  final String diseaseResult; // Add this field
+
+  AnalysingScreen({required this.diseaseResult}); // Update the constructor
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +22,17 @@ class AnalysingScreen extends StatelessWidget {
             ),
             Text(
               'We are analyzing your ECG. Keep waiting to get your Heart Condition...',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black.withOpacity(0.88),
+                fontSize: 19,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w700,
+                height: 1.4, // Adjust this value for line spacing
+              ),
+            ),
+            Text(
+              'Diagnosis Result: $diseaseResult', // Display the disease result
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black.withOpacity(0.88),
