@@ -98,7 +98,7 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
     if (_image != null) {
       try {
         final uri = Uri.parse(
-            'https://ad27-112-134-168-201.ngrok-free.app/model/uploadoriginalcompatible');
+            'https://1880-112-134-168-221.ngrok-free.app/model/uploadoriginalcompatible');
         final request = http.MultipartRequest('POST', uri)
           ..files
               .add(await http.MultipartFile.fromPath('my_image', _image!.path));
@@ -148,7 +148,7 @@ class _MyAppHomePageState extends State<cameradiagnosisscreen> {
   Future<void> createRecord() async {
     // Define the API endpoint URL
     final apiUrl =
-        Uri.parse('https://ad27-112-134-168-201.ngrok-free.app/model/save');
+        Uri.parse('https://1880-112-134-168-221.ngrok-free.app/model/save');
 
     try {
       // Create a JSON payload with the data you want to send

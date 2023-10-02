@@ -36,7 +36,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   Future<void> createUser() async {
     // Define the API endpoint URL
     final apiUrl =
-        Uri.parse('https://ad27-112-134-168-201.ngrok-free.app/user/add');
+        Uri.parse('https://1880-112-134-168-221.ngrok-free.app/user/add');
 
     try {
       // Create a JSON payload with the data you want to send
