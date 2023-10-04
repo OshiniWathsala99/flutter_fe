@@ -7,6 +7,9 @@ import 'package:fe_ecg/registerui.dart';
 import 'package:fe_ecg/diagnosisui.dart';
 import 'package:fe_ecg/homeui.dart';
 import 'package:fe_ecg/cameradiagnosisui.dart';
+import 'package:fe_ecg/history.dart';
+import 'package:fe_ecg/verifydiagnosis.dart';
+import 'package:fe_ecg/analysing.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,15 +30,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ECG Based Diagnosis System',
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.login,
       routes: {
-        AppRoutes.home: (context) => homeScreen(),
         AppRoutes.login: (context) => LoginScreen(),
+        AppRoutes.home: (context) => homeScreen(),
         AppRoutes.registration: (context) => RegistrationScreen(),
         AppRoutes.diagnosis: (context) =>
             DiagnosisScreen(), // Add the DiagnosisScreen route
         AppRoutes.camdiagnosis: (context) =>
-            cameradiagnosisscreen(), // Add the DiagnosisScreen route
+            CameraDiagnosisScreen(), // Add the DiagnosisScreen route
+        AppRoutes.history: (context) => historyscreen(),
+        AppRoutes.verification: (context) =>
+            VerificationScreen(diseaseResult: AppRoutes.analyzing),
+        AppRoutes.analyzing: (context) =>
+            AnalysingScreen(diseaseResult: AppRoutes.camdiagnosis),
       },
     );
   }
