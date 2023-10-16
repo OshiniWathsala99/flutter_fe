@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "871830581613",
+    "firebase_url": "https://ecg-diagnosis-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ecg-diagnosis-system",
+    "storage_bucket": "ecg-diagnosis-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871830581613:android:df6734349713c83768ea64",
+        "android_client_info": {
+          "package_name": "com.example.fe_ecg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnjhu3h3BZvB8lFTarvS4NG_PQ6t4FPCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
