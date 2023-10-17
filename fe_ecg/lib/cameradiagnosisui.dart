@@ -221,13 +221,27 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
                     margin: EdgeInsets.only(left: 45.0, bottom: 10), // Add margin here
                     child: Row(
                       children: <Widget>[
+
                         _images != null && _images!.isNotEmpty
                             ? Image.file(
                           File(_images!.first.path),
                           height: 200.0,
                           width: 200.0,
                         )
-                            : Container(),
+                            : Container(
+                          margin: EdgeInsets.only(left: 50.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blueAccent, // Border color
+                              width: 2.0, // Border width
+                            ),
+                          ),
+                          child: Image.asset(
+                            'assets/logo.jpg', // Replace with the path to your placeholder image
+                            height: 200.0,
+                            width: 200.0,
+                          ),
+                        ),
                         if (_images != null && _images!.length > 1 && _images!.length >= 3)
                           Row(
                             children: <Widget>[
@@ -267,7 +281,13 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
                     child: Text('Select Photos'),
                   ),
                   SizedBox(height: 10),
-                  ElevatedButton(
+                  if (_images!.isNotEmpty) Text(
+                    'Files Count: ${_images!.length}',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(height: 10),
+                  if (_images!.isNotEmpty)
+                    ElevatedButton(
                     onPressed: () async {
                       await Dignosis();
 

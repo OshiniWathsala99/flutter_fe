@@ -54,59 +54,77 @@ class VerificationScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Diagnosis Result from Previous Screen:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black45,
-              ),
-            ),
-            SizedBox(height: 5),
-            Text(
-              diseaseResult,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-              ),
-            ),
-            SizedBox(height: 22),
-            ElevatedButton(
-              onPressed: () async {
-
-                bool confirmation = await _showConfirmationDialog(context);
-                if (confirmation) {
-                  // Verification Function -> Firebase
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                minimumSize: Size(200, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0), // Adjust the padding as needed
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Diagnosis Result from Previous Screen:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black45,
                 ),
               ),
-              child: Text('Send Verification Request'),
-            ),
-            SizedBox(height: 16),
-            OutlinedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/');
-              },
-              style: OutlinedButton.styleFrom(
-                primary: Colors.blue,
-                minimumSize: Size(200, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.0),
+              SizedBox(height: 5),
+              Center(
+                child: Text(
+                  diseaseResult,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-              child: Text('To Home'),
-            )
-          ],
+              SizedBox(height: 20,),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox(width: 30,),
+                    ElevatedButton(
+                      onPressed: () async {
+                        bool confirmation = await _showConfirmationDialog(context);
+                        if (confirmation) {
+                          // Verification Function -> Firebase
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                        minimumSize: Size(200, 50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Send Verification Request'),
+                          Icon(Icons.arrow_right, color: Colors.white),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ),
+              Spacer(),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/');
+                },
+                style: OutlinedButton.styleFrom(
+                  primary: Colors.blue,
+                  minimumSize: Size(double.infinity, 50), // Full width
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0),
+                  ),
+                ),
+                child: Text('To Home'),
+              ),
+            ],
+          ),
         ),
       ),
     );

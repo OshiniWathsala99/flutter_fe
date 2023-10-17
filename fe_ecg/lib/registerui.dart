@@ -268,30 +268,40 @@ class _RegistrationFormState extends State<RegistrationForm> {
               Expanded(child: Divider(color: Colors.black)),
             ]),
             SizedBox(height: 16),
-            RichText(
-              text: TextSpan(
-                style: DefaultTextStyle.of(context).style,
-                children: <TextSpan>[
-                  TextSpan(
-                    text: "Already have an account?",
-                    style: TextStyle(
-                      color: Colors.black45,
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  Icons.favorite,
+                  color: Colors.black,
+                ),
+                RichText(
+                  text: TextSpan(
+                    style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "Already have an account?",
+                        style: TextStyle(
+                          color: Colors.black45,
+                        ),
+                      ),
+                      TextSpan(text: ' '),
+                      TextSpan(
+                        text: 'Sign In',
+                        style: TextStyle(
+                          color: Colors.blue,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(context, '/login');
+                          },
+                      ),
+                    ],
                   ),
-                  TextSpan(text: ' '),
-                  TextSpan(
-                    text: 'Sign In',
-                    style: TextStyle(
-                      color: Colors.blue,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.pushNamed(context, '/login');
-                      },
-                  ),
-                ],
-              ),
-            )
+                ),
+              ],
+            ),
+
           ],
         ),
       )
