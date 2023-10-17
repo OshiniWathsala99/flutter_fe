@@ -13,7 +13,8 @@ class VerificationScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirmation'),
-          content: Text('Are you sure you want to send the verification request?'),
+          content:
+              Text('Are you sure you want to send the verification request?'),
           actions: <Widget>[
             TextButton(
               child: Text('Cancel'),
@@ -77,7 +78,6 @@ class VerificationScreen extends StatelessWidget {
             SizedBox(height: 22),
             ElevatedButton(
               onPressed: () async {
-
                 bool confirmation = await _showConfirmationDialog(context);
                 if (confirmation) {
                   // Verification Function -> Firebase
@@ -98,7 +98,7 @@ class VerificationScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/');
               },
               style: OutlinedButton.styleFrom(
-                primary: Colors.blue,
+                primary: Color.fromARGB(244, 33, 149, 243),
                 minimumSize: Size(200, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0.0),

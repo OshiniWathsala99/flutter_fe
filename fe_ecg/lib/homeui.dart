@@ -27,8 +27,8 @@ class _HomePageState extends State<homeScreen> {
 
   Future<void> fetchData() async {
     final userName = context.read<User>().userName;
-    final response = await http.get(Uri.parse(
-        '${ServerConfig.serverUrl}/model/previous?name=$userName'));
+    final response = await http.get(
+        Uri.parse('${ServerConfig.serverUrl}/model/previous?name=$userName'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       setState(() {
@@ -67,9 +67,31 @@ class _HomePageState extends State<homeScreen> {
       builder: (context, user, child) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Color.fromARGB(255, 82, 206, 248),
             elevation: 0,
             actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hello,',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      user.userName,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               IconButton(
                 onPressed: () {
                   context.read<User>().updateUserName('');
@@ -78,138 +100,148 @@ class _HomePageState extends State<homeScreen> {
                 icon: Icon(Icons.logout, color: Colors.black),
               ),
             ],
-            title: Text(
-              user.userName,
-              style: TextStyle(color: Colors.black),
-            ),
-            centerTitle: true,
+            centerTitle: false,
           ),
-          body: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 20,),
-                Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 2,
-                        blurRadius: 4,
-                        offset: Offset(0, 2),
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 24),
+                  Card(
+                    elevation: 3,
+                    color: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ListTile(
+                      leading: Icon(Icons.assignment,
+                          color: const Color.fromARGB(222, 255, 255, 255)),
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                            context, '/camdiagnosis');
+                      },
+                      title: Text(
+                        'Diagnosis',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
                       ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(75),
-                    child: Image.asset(
-                      'assets/user.png',
-                      fit: BoxFit.cover,
+                      trailing: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  'Hello ${user.userName}.',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(height: 2),
-                Text(
-                  'Let\'s Diagnosis your cardiovascular disease',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black45,
-                  ),
-                ),
-                SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/camdiagnosis');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    minimumSize: Size(200, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0.0), // No rounded corners
-                    ),
-                  ),
-                  child: Text('Diagnosis'),
-                ),
-                SizedBox(height: 15),
-                OutlinedButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/history');
-                  },
-                  style: OutlinedButton.styleFrom(
-                    primary: Colors.blue,
-                    minimumSize: Size(200, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0.0),
-                    ),
-                  ),
-                  child: Text('Diagnosis History'),
-                ),
-                SizedBox(height: 16),
-                Container(
-                  margin: EdgeInsets.all(20),
-                  width: double.infinity,
-                  padding: EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
+                  SizedBox(height: 15),
+                  Card(
+                    elevation: 3,
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 2,
-                        blurRadius: 4,
-                        offset: Offset(0, 2),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ListTile(
+                      leading: Icon(Icons.history, color: Colors.blue),
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, '/history');
+                      },
+                      title: Text(
+                        'Diagnosis History',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 20,
+                        ),
                       ),
-                    ],
+                      trailing: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue,
+                      ),
+                    ),
                   ),
-                  child: DataTable(
-                    headingRowHeight: 50, // Set the heading row height
-                    dataRowHeight: 50, // Adjust the data row height
-                    columns: <DataColumn>[
-                      DataColumn(
-                        label: Text('Date', style: TextStyle(fontWeight: FontWeight.bold)), // Add a bold heading
-                      ),
-                      DataColumn(
-                        label: Text('Diagnosis', style: TextStyle(fontWeight: FontWeight.bold)), // Add a bold heading
-                      ),
-                      DataColumn(
-                        label: Text('Verified', style: TextStyle(fontWeight: FontWeight.bold)), // Add a bold heading
-                      ),
-                    ],
-                    rows: progressData.entries.take(3).map((entry) {
-                      final Map<String, String> values = entry.value;
-                      final isOddRow = progressData.entries.toList().indexOf(entry) % 2 == 1;
-
-                      final dateValue = values['Date']?.split(' ')[0];
-                      return DataRow(
-                        color: (values['DoctorVeri'] == "To Be Confirm") ? MaterialStateProperty.all(Colors.yellow) : MaterialStateProperty.all(Colors.blue),
-                        cells:  <DataCell>[
-                          DataCell(Text(dateValue ?? 'N/A')),
-                          DataCell(
-                            Text(
-                              (values['prediction'] != null && values['prediction']!.length > 25)
-                                  ? values['prediction']!.substring(0, 23) + "..."
-                                  : values['prediction'] ?? "N/A",
-                            ),
+                  SizedBox(height: 24),
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    width: double.infinity,
+                    padding: EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: SingleChildScrollView(
+                      // Add this SingleChildScrollView
+                      scrollDirection: Axis.horizontal,
+                      child: DataTable(
+                        headingRowHeight: 50,
+                        dataRowHeight: 50,
+                        columns: <DataColumn>[
+                          DataColumn(
+                            label: Text('Date',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18)),
                           ),
-                          DataCell(
-                              Text(values['DoctorVeri'] ?? 'N/A')), // Display 'user' data
+                          DataColumn(
+                            label: Text('Diagnosis',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18)),
+                          ),
+                          DataColumn(
+                            label: Text('Result',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18)),
+                          ),
                         ],
-                      );
-                    }).toList(),
+                        rows: progressData.entries.take(3).map((entry) {
+                          final Map<String, String> values = entry.value;
+                          final isOddRow =
+                              progressData.entries.toList().indexOf(entry) %
+                                      2 ==
+                                  1;
+
+                          final dateValue = values['Date']?.split(' ')[0];
+                          return DataRow(
+                            color: (values['DoctorVeri'] == "To Be Confirm")
+                                ? MaterialStateProperty.all(
+                                    Color.fromARGB(255, 246, 245, 240))
+                                : MaterialStateProperty.all(
+                                    const Color.fromARGB(255, 119, 175, 221)),
+                            cells: <DataCell>[
+                              DataCell(
+                                Text(
+                                  dateValue ?? 'N/A',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              ),
+                              DataCell(
+                                Text(
+                                  (values['prediction'] != null &&
+                                          values['prediction']!.length > 25)
+                                      ? values['prediction']!.substring(0, 23) +
+                                          "..."
+                                      : values['prediction'] ?? "N/A",
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              ),
+                              DataCell(
+                                Text(values['DoctorVeri'] ?? 'N/A',
+                                    style: TextStyle(fontSize: 16)),
+                              ),
+                            ],
+                          );
+                        }).toList(),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           bottomNavigationBar: MyBottomNavigationBar(

@@ -73,228 +73,218 @@ class _RegistrationFormState extends State<RegistrationForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 5),
-            Container(
-              width: 150,
-              height: 150,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 4,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(75),
-                child: Image.asset(
-                  'assets/logo.jpg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(height: 5),
-            Text(
-              'Register',
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Full Name',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                    color: Colors.blue,
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 5),
+              Container(
+                width: 190,
+                height: 170,
+                decoration: BoxDecoration(),
+                child: ClipRRect(
+                  child: Image.asset(
+                    'assets/logo.jpg',
+                    // fit: BoxFit.cover,
                   ),
                 ),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your name';
-                } else {
-                  _name = value;
-                }
-              },
-            ),
-            SizedBox(height: 5),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Age',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your age';
-                } else {
-                  _age = int.parse(value);
-                }
-              },
-            ),
-            SizedBox(height: 5),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                } else {
-                  _email = value;
-                }
-              },
-            ),
-            SizedBox(height: 5),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Known Cardiovascular Disease Status',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your current disease status';
-                } else {
-                  _pre = value;
-                }
-              },
-            ),
-            SizedBox(height: 5),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              obscureText: true,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
-                }
-                return null;
-              },
-              onSaved: (value) => _password = value!,
-            ),
-            SizedBox(height: 5),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Confirm-Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              obscureText: true,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please re-enter your password';
-                }
-                return null;
-              },
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  final result = await registerWithEmailAndPassword(_email, _password);
-                  setState(() {
-                    suc = result;
-                    if (suc == 1) {
-                      createUser();
-                      Navigator.pushNamed(context, '/login');
-                    }
-                    if (suc != 1) {
-                      errorMessage = "Something Went Wrong!";
-                    }
-                  });
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.0), // No rounded corners
-                ), // Set the button's height
-                minimumSize: Size(double.infinity, 50), // Make it full width
-              ),
-              child: Text('Register'),
-            ),
-            if (errorMessage.isNotEmpty)
+              SizedBox(height: 10),
               Text(
-                errorMessage,
+                'Register',
                 style: TextStyle(
-                  color: Colors.red,
+                  fontSize: 24,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            SizedBox(height: 16),
-            Row(children: <Widget>[
-              Expanded(child: Divider(color: Colors.black)),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('or'),
-              ),
-              Expanded(child: Divider(color: Colors.black)),
-            ]),
-            SizedBox(height: 16),
-            RichText(
-              text: TextSpan(
-                style: DefaultTextStyle.of(context).style,
-                children: <TextSpan>[
-                  TextSpan(
-                    text: "Already have an account?",
-                    style: TextStyle(
-                      color: Colors.black45,
-                    ),
-                  ),
-                  TextSpan(text: ' '),
-                  TextSpan(
-                    text: 'Sign In',
-                    style: TextStyle(
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
                       color: Colors.blue,
                     ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.pushNamed(context, '/login');
-                      },
                   ),
-                ],
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  } else {
+                    _name = value;
+                  }
+                },
               ),
-            )
-          ],
-        ),
-      )
-    );
+              SizedBox(height: 5),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Age',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your age';
+                  } else {
+                    _age = int.parse(value);
+                  }
+                },
+              ),
+              SizedBox(height: 5),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  } else {
+                    _email = value;
+                  }
+                },
+              ),
+              SizedBox(height: 5),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Known Cardiovascular Disease Status',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your current disease status';
+                  } else {
+                    _pre = value;
+                  }
+                },
+              ),
+              SizedBox(height: 5),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+                onSaved: (value) => _password = value!,
+              ),
+              SizedBox(height: 5),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Confirm-Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please re-enter your password';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    final result =
+                        await registerWithEmailAndPassword(_email, _password);
+                    setState(() {
+                      suc = result;
+                      if (suc == 1) {
+                        createUser();
+                        Navigator.pushNamed(context, '/login');
+                      }
+                      if (suc != 1) {
+                        errorMessage = "Something Went Wrong!";
+                      }
+                    });
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(0.0), // No rounded corners
+                  ), // Set the button's height
+                  minimumSize: Size(double.infinity, 50), // Make it full width
+                ),
+                child: Text('Register'),
+              ),
+              if (errorMessage.isNotEmpty)
+                Text(
+                  errorMessage,
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+              SizedBox(height: 16),
+              Row(children: <Widget>[
+                Expanded(child: Divider(color: Colors.black)),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('or'),
+                ),
+                Expanded(child: Divider(color: Colors.black)),
+              ]),
+              SizedBox(height: 16),
+              RichText(
+                text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: "Already have an account?",
+                      style: TextStyle(
+                        color: Colors.black45,
+                      ),
+                    ),
+                    TextSpan(text: ' '),
+                    TextSpan(
+                      text: 'Sign In',
+                      style: TextStyle(
+                        color: Colors.blue,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(context, '/login');
+                        },
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
