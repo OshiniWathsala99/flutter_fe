@@ -364,7 +364,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
     if (_image != null) {
       try {
         final uri = Uri.parse(
-            'https://4e40-112-134-168-75.ngrok-free.app/model/uploadoriginalcompatible');
+            'https://9970-112-134-172-217.ngrok-free.app/model/uploadoriginalcompatible');
         final request = http.MultipartRequest('POST', uri)
           ..files
               .add(await http.MultipartFile.fromPath('my_image', _image!.path));
@@ -415,7 +415,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
   Future<void> createRecord() async {
     // Define the API endpoint URL
     final apiUrl =
-        Uri.parse('https://4e40-112-134-168-75.ngrok-free.app/model/save');
+        Uri.parse('https://9970-112-134-172-217.ngrok-free.app/model/save');
 
     try {
       // Create a JSON payload with the data you want to send
@@ -462,7 +462,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
       var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://4e40-112-134-168-75.ngrok-free.app/crosscheck/upload/$username/$dignosis'),
+            'https://9970-112-134-172-217.ngrok-free.app/crosscheck/upload/$username/$dignosis'),
       );
 
       File file = File(_image!.path);

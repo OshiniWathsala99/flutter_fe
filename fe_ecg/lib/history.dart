@@ -33,7 +33,7 @@ class _HistoryScreenState extends State<historyscreen> {
 
   Future<void> fetchData() async {
     final response = await http.get(Uri.parse(
-        'https://e2c3-112-134-175-95.ngrok-free.app/model/previous?name=oshini wathsala'));
+        'https://9970-112-134-172-217.ngrok-free.app/model/previous?name=oshini wathsala'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       setState(() {
