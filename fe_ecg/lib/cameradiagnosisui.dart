@@ -130,12 +130,13 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
     final apiUrl = Uri.parse('${ServerConfig.serverUrl}/model/save');
 
     try {
-      // [TAG]
+      String firstImageFilename = _images!.isNotEmpty ? _images!.first.path.split('/').last : ''; // Get the filename of the first image
       final requestData = {
         "user": _user,
         "prediction": _disease_res,
         "Date": _date,
         "Time": _time,
+        "Files": [firstImageFilename], // Store the first image filename in a list
         "DoctorVeri": 'To Be Confirm'
       };
 
@@ -158,6 +159,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
   Future uploadPhoto(String username, String dignosis) async {
     if (_images!.isNotEmpty) {
       _image = _images!.first;
+      print(_image);
     }
     if (_image != null) {
       final encodedUsername = Uri.encodeComponent(username);
@@ -169,6 +171,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
       );
 
       File file = File(_image!.path);
+      print(file.uri);
       request.files.add(
         http.MultipartFile(
           'file',

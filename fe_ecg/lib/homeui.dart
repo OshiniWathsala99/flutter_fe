@@ -29,13 +29,26 @@ class _HomePageState extends State<homeScreen> {
     final userName = context.read<User>().userName;
     final response = await http.get(Uri.parse(
         '${ServerConfig.serverUrl}/model/previous?name=$userName'));
+
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
+
+      // Handle dynamic types and convert the data before calling setState
+      Map<String, Map<String, String>> processedData = Map();
+      data.forEach((key, value) {
+        if (value is Map<String, dynamic>) {
+          Map<String, String> innerData = Map();
+          value.forEach((innerKey, innerValue) {
+            if (innerValue is String) {
+              innerData[innerKey] = innerValue;
+            }
+          });
+          processedData[key] = innerData;
+        }
+      });
+
       setState(() {
-        // Handle dynamic types here
-        progressData = data.map<String, Map<String, String>>((key, value) {
-          return MapEntry(key, Map<String, String>.from(value));
-        });
+        progressData = processedData;
       });
     } else {
       throw Exception('Failed to load data');
