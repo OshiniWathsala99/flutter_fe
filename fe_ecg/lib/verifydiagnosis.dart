@@ -18,13 +18,13 @@ class VerificationScreen extends StatelessWidget {
             TextButton(
               child: Text('Cancel'),
               onPressed: () {
-                Navigator.of(context).pop(false); // Return false on cancel
+                Navigator.of(context).pop(false);
               },
             ),
             TextButton(
               child: Text('Confirm'),
               onPressed: () {
-                Navigator.of(context).pop(true); // Return true on confirmation
+                Navigator.of(context).pop(true);
               },
             ),
           ],

@@ -28,11 +28,9 @@ Future<int> loginWithEmailAndPassword(String email, String password) async {
       // User account is disabled.
       return accountDisabled;
     } else {
-      // Handle other errors here.
       return unknownError;
     }
   } catch (e) {
-    // Handle any other exceptions here.
     return unknownError;
   }
 }

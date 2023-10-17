@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(// Width of the form container
+        child: Container(
           padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 50),
 
           child: LoginForm(),
@@ -110,7 +110,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             SizedBox(height: 16),
             Container(
-              width: double.infinity, // Full width
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
@@ -129,10 +129,10 @@ class _LoginFormState extends State<LoginForm> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue, // Blue background
+                  primary: Colors.blue,
                   minimumSize: Size(200, 50),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0), // Rectangle with sharp corners
+                    borderRadius: BorderRadius.circular(0),
                   ),
                 ),
                 child: Text('Login'),

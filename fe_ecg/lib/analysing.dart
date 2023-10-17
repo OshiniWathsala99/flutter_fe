@@ -16,7 +16,6 @@ class _AnalysingScreenState extends State<AnalysingScreen> {
   void initState() {
     super.initState();
 
-    // Delay navigation to Screen 'c' with _disease_res using "n" method
     Future.delayed(Duration(seconds: 10), () {
       Navigator.push(
         context,
@@ -37,7 +36,7 @@ class _AnalysingScreenState extends State<AnalysingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/1.gif', // Use the correct asset path
+              'assets/1.gif',
               width: 450,
               height: 450,
               fit: BoxFit.cover,
@@ -50,20 +49,10 @@ class _AnalysingScreenState extends State<AnalysingScreen> {
                 fontSize: 19,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w700,
-                height: 1.4, // Adjust this value for line spacing
+                height: 1.4,
               ),
             ),
-            // Text(
-            //   'Diagnosis Result: $widget.diseaseResult', // Display the disease result
-            //   textAlign: TextAlign.center,
-            //   style: TextStyle(
-            //     color: Colors.black.withOpacity(0.88),
-            //     fontSize: 19,
-            //     fontFamily: 'Poppins',
-            //     fontWeight: FontWeight.w700,
-            //     height: 1.4, // Adjust this value for line spacing
-            //   ),
-            // ),
+
           ],
         ),
       ),

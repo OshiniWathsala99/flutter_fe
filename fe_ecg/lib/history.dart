@@ -41,7 +41,6 @@ class _HistoryScreenState extends State<historyscreen> {
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
 
-      // Handle dynamic types and convert the data before calling setState
       Map<String, Map<String, String>> processedData = Map();
       data.forEach((key, value) {
         if (value is Map<String, dynamic>) {

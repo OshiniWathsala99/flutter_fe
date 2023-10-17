@@ -32,8 +32,6 @@ class _HomePageState extends State<homeScreen> {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
-
-      // Handle dynamic types and convert the data before calling setState
       Map<String, Map<String, String>> processedData = Map();
       data.forEach((key, value) {
         if (value is Map<String, dynamic>) {
@@ -60,7 +58,6 @@ class _HomePageState extends State<homeScreen> {
       currentIndex = index;
     });
 
-    // Handle navigation based on the selected index
     switch (index) {
       case 0:
         Navigator.pushReplacementNamed(context, '/');
@@ -149,7 +146,7 @@ class _HomePageState extends State<homeScreen> {
                     primary: Colors.blue,
                     minimumSize: Size(200, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0.0), // No rounded corners
+                      borderRadius: BorderRadius.circular(0.0),
                     ),
                   ),
                   child: Text('Diagnosis'),
@@ -186,17 +183,17 @@ class _HomePageState extends State<homeScreen> {
                     ],
                   ),
                   child: DataTable(
-                    headingRowHeight: 50, // Set the heading row height
-                    dataRowHeight: 50, // Adjust the data row height
+                    headingRowHeight: 50,
+                    dataRowHeight: 50,
                     columns: <DataColumn>[
                       DataColumn(
-                        label: Text('Date', style: TextStyle(fontWeight: FontWeight.bold)), // Add a bold heading
+                        label: Text('Date', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       DataColumn(
-                        label: Text('Diagnosis', style: TextStyle(fontWeight: FontWeight.bold)), // Add a bold heading
+                        label: Text('Diagnosis', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       DataColumn(
-                        label: Text('Verified', style: TextStyle(fontWeight: FontWeight.bold)), // Add a bold heading
+                        label: Text('Verified', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
                     rows: progressData.entries.take(3).map((entry) {
@@ -216,7 +213,7 @@ class _HomePageState extends State<homeScreen> {
                             ),
                           ),
                           DataCell(
-                              Text(values['DoctorVeri'] ?? 'N/A')), // Display 'user' data
+                              Text(values['DoctorVeri'] ?? 'N/A')),
                         ],
                       );
                     }).toList(),

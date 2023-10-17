@@ -130,13 +130,13 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
     final apiUrl = Uri.parse('${ServerConfig.serverUrl}/model/save');
 
     try {
-      String firstImageFilename = _images!.isNotEmpty ? _images!.first.path.split('/').last : ''; // Get the filename of the first image
+      String firstImageFilename = _images!.isNotEmpty ? _images!.first.path.split('/').last : '';
       final requestData = {
         "user": _user,
         "prediction": _disease_res,
         "Date": _date,
         "Time": _time,
-        "Files": [firstImageFilename], // Store the first image filename in a list
+        "Files": [firstImageFilename],
         "DoctorVeri": 'To Be Confirm'
       };
 
@@ -197,7 +197,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
   Widget build(BuildContext context) {
     return Consumer<User>(
       builder: (context, user, child) {
-        _user = user.userName; // Get the userName from the User provider
+        _user = user.userName;
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -221,7 +221,7 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(left: 45.0, bottom: 10), // Add margin here
+                    margin: EdgeInsets.only(left: 45.0, bottom: 10),
                     child: Row(
                       children: <Widget>[
 
@@ -235,12 +235,12 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
                           margin: EdgeInsets.only(left: 50.0),
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Colors.blueAccent, // Border color
-                              width: 2.0, // Border width
+                              color: Colors.blueAccent,
+                              width: 2.0,
                             ),
                           ),
                           child: Image.asset(
-                            'assets/logo.jpg', // Replace with the path to your placeholder image
+                            'assets/logo.jpg',
                             height: 200.0,
                             width: 200.0,
                           ),
@@ -307,10 +307,10 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
                     },
                     child: Text('Diagnosis Disease'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue, // Blue background
+                      primary: Colors.blue,
                       minimumSize: Size(200, 50),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0.0), // Round corners
+                        borderRadius: BorderRadius.circular(0.0),
                       ),
                     ),
                   ),

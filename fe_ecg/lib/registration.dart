@@ -12,7 +12,6 @@ Future<int> registerWithEmailAndPassword(String email, String password) async {
       email: email,
       password: password,
     );
-    // Registration successful, return success code.
     return registrationSuccess;
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {

@@ -44,9 +44,9 @@ class MyApp extends StatelessWidget {
         AppRoutes.home: (context) => homeScreen(),
         AppRoutes.registration: (context) => RegistrationScreen(),
         AppRoutes.diagnosis: (context) =>
-            DiagnosisScreen(), // Add the DiagnosisScreen route
+            DiagnosisScreen(),
         AppRoutes.camdiagnosis: (context) =>
-            CameraDiagnosisScreen(), // Add the DiagnosisScreen route
+            CameraDiagnosisScreen(),
         AppRoutes.history: (context) => historyscreen(),
         AppRoutes.verification: (context) =>
             VerificationScreen(diseaseResult: AppRoutes.analyzing),

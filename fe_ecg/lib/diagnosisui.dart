@@ -9,13 +9,13 @@ class DiagnosisScreen extends StatefulWidget {
 }
 
 class _MyAppState extends State<DiagnosisScreen> {
-  File? _image; // Add ? to indicate it can be null
+  File? _image;
   String _predictedResult = "";
 
   Future getImage() async {
     final picker = ImagePicker();
     final pickedFile =
-        await picker.pickImage(source: ImageSource.gallery); // Use pickImage
+        await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {
@@ -62,7 +62,7 @@ class _MyAppState extends State<DiagnosisScreen> {
                     ? Text('Select an image.')
                     : Image.file(_image!,
                         height: 200.0,
-                        width: 200.0), // Add ! to indicate it's not null
+                        width: 200.0),
                 ElevatedButton(
                   onPressed: getImage,
                   child: Text('Select Image'),
