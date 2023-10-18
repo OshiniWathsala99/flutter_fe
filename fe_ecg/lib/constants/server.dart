@@ -7,4 +7,5 @@ class ServerConfig {
   static const String loginRoute = '/api/login';
   static const String userRoute = '/api/user';
   static const String productsRoute = '/api/products';
+  static const String validateRoute = '/api/crosscheck';
 }

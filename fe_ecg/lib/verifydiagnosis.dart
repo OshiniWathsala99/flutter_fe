@@ -38,7 +38,7 @@ class VerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color.fromARGB(255, 82, 206, 248),
         elevation: 0,
         actions: [
           IconButton(
