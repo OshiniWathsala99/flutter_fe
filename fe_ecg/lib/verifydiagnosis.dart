@@ -13,8 +13,7 @@ class VerificationScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirmation'),
-          content:
-              Text('Are you sure you want to send the verification request?'),
+          content: Text('Are you sure to send the verification request?'),
           actions: <Widget>[
             TextButton(
               child: Text('Cancel'),
@@ -38,7 +37,7 @@ class VerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 82, 206, 248),
+        backgroundColor: Color.fromARGB(120, 82, 207, 248),
         elevation: 0,
         actions: [
           IconButton(
@@ -50,62 +49,103 @@ class VerificationScreen extends StatelessWidget {
           ),
         ],
         title: Text(
-          'Verification',
+          '2-Step Verification',
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Center(
+      body: buildBody(context),
+      backgroundColor:
+          Color.fromARGB(255, 85, 228, 247), // Set the background color here
+    );
+  }
+
+  Widget buildBody(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Diagnosis Result from Previous Screen:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black45,
+            Padding(
+              padding: const EdgeInsets.only(top: 80),
+              child: Align(
+                alignment: Alignment(0, 4),
+                child: Text(
+                  'Your Diagnosis Result:',
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(0.88),
+                    fontSize: 25,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w700,
+                    height: 1.4, // Adjust this value for line spacing
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 5),
-            Text(
-              diseaseResult,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
+            Padding(
+              padding: const EdgeInsets.only(top: 13),
+              child: Text(
+                diseaseResult,
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.88),
+                  fontSize: 19,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w700,
+                  height: 1.4, // Adjust this value for line spacing
+                ),
+              ),
+            ),
+
+            SizedBox(height: 100), // Added 30 pixels of padding here
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 25.0), // Left and right padding
+              child: Text(
+                'To Future Verification Send your Report to Medical Professional...',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.88),
+                  fontSize: 19,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w700,
+                  height: 1.4, // Adjust this value for line spacing
+                ),
               ),
             ),
             SizedBox(height: 22),
-            ElevatedButton(
-              onPressed: () async {
-                bool confirmation = await _showConfirmationDialog(context);
-                if (confirmation) {
-                  // Verification Function -> Firebase
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                minimumSize: Size(200, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 100),
+              child: ElevatedButton(
+                onPressed: () async {
+                  bool confirmation = await _showConfirmationDialog(context);
+                  if (confirmation) {
+                    // Verification Function -> Firebase
+
+                    // Show success message
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content:
+                            Text('Successfully sent the verification request!'),
+                      ),
+                    );
+
+                    // Navigate to the homepage
+                    Navigator.of(context).pushReplacementNamed('/');
+                  } else {
+                    // Navigate to the homepage
+                    Navigator.of(context).pushReplacementNamed('/');
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue,
+                  minimumSize: Size(200, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0),
+                  ),
                 ),
+                child: Text('Get Verified'),
               ),
-              child: Text('Send Verification Request'),
             ),
-            SizedBox(height: 16),
-            OutlinedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/');
-              },
-              style: OutlinedButton.styleFrom(
-                primary: Color.fromARGB(244, 33, 149, 243),
-                minimumSize: Size(200, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.0),
-                ),
-              ),
-              child: Text('To Home'),
-            )
           ],
         ),
       ),
