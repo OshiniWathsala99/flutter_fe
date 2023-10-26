@@ -24,12 +24,14 @@ void main() async {
           appId: "1:871830581613:web:2bd0f7b245bbbe1a68ea64",
           messagingSenderId: "871830581613",
           projectId: "ecg-diagnosis-system"));
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => User(userName: "")),
-    ],
-    child: MyApp(),
-  ),);
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => User(userName: "")),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -38,15 +40,15 @@ class MyApp extends StatelessWidget {
     final user = context.watch<User>();
     return MaterialApp(
       title: 'ECG Based Diagnosis System',
-      initialRoute: user.userName.isNotEmpty && user.userName!="" ? AppRoutes.home : AppRoutes.login,
+      initialRoute: user.userName.isNotEmpty && user.userName != ""
+          ? AppRoutes.home
+          : AppRoutes.login,
       routes: {
         AppRoutes.login: (context) => LoginScreen(),
         AppRoutes.home: (context) => homeScreen(),
         AppRoutes.registration: (context) => RegistrationScreen(),
-        AppRoutes.diagnosis: (context) =>
-            DiagnosisScreen(), // Add the DiagnosisScreen route
-        AppRoutes.camdiagnosis: (context) =>
-            CameraDiagnosisScreen(), // Add the DiagnosisScreen route
+        AppRoutes.diagnosis: (context) => DiagnosisScreen(),
+        AppRoutes.camdiagnosis: (context) => CameraDiagnosisScreen(),
         AppRoutes.history: (context) => historyscreen(),
         AppRoutes.verification: (context) =>
             VerificationScreen(diseaseResult: AppRoutes.analyzing),
