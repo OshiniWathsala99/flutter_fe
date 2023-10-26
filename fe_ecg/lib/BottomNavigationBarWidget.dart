@@ -22,11 +22,11 @@ class MyBottomNavigationBar extends StatelessWidget {
         // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.camera),
-          label: 'Evaluation',
+          label: 'Diagnosis',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.timeline),
-          label: 'Progress',
+          label: 'History',
         ),
       ],
       currentIndex: currentIndex,

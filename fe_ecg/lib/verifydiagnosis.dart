@@ -1,11 +1,13 @@
 import 'package:fe_ecg/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:fe_ecg/BottomNavigationBarWidget.dart';
 
 class VerificationScreen extends StatelessWidget {
   final String diseaseResult;
 
   VerificationScreen({required this.diseaseResult});
+  int currentIndex = 0;
 
   Future<bool> _showConfirmationDialog(BuildContext context) async {
     return await showDialog(

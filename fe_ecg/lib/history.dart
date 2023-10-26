@@ -25,7 +25,7 @@ class _HistoryScreenState extends State<historyscreen> {
         Navigator.pushReplacementNamed(context, '/');
         break;
       case 1:
-        Navigator.pushReplacementNamed(context, '/camdiagnosis');
+        Navigator.pushReplacementNamed(context, '/diagnosis');
         break;
       case 2:
         Navigator.pushReplacementNamed(context, '/history');

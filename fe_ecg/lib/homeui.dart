@@ -316,7 +316,7 @@ class _HomePageState extends State<homeScreen> {
         Navigator.pushReplacementNamed(context, '/');
         break;
       case 1:
-        Navigator.pushReplacementNamed(context, '/camdiagnosis');
+        Navigator.pushReplacementNamed(context, '/diagnosis');
         break;
       case 2:
         Navigator.pushReplacementNamed(context, '/history');
@@ -392,8 +392,7 @@ class _HomePageState extends State<homeScreen> {
                       leading: Icon(Icons.assignment,
                           color: const Color.fromARGB(222, 255, 255, 255)),
                       onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, '/camdiagnosis');
+                        Navigator.pushReplacementNamed(context, '/diagnosis');
                       },
                       title: Padding(
                         padding: const EdgeInsets.all(8.0),
