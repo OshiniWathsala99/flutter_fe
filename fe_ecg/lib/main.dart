@@ -12,6 +12,7 @@ import 'package:fe_ecg/history.dart';
 import 'package:fe_ecg/verifydiagnosis.dart';
 import 'package:fe_ecg/analysing.dart';
 import 'package:provider/provider.dart';
+import 'package:fe_ecg/declaration.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
             VerificationScreen(diseaseResult: AppRoutes.analyzing),
         AppRoutes.analyzing: (context) =>
             AnalysingScreen(diseaseResult: AppRoutes.camdiagnosis),
+        AppRoutes.declaration: (context) => DeclarationPage(),
       },
     );
   }

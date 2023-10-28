@@ -2,6 +2,7 @@ import 'package:fe_ecg/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fe_ecg/BottomNavigationBarWidget.dart';
+import 'package:fe_ecg/declaration.dart';
 
 class VerificationScreen extends StatelessWidget {
   final String diseaseResult;
@@ -48,6 +49,17 @@ class VerificationScreen extends StatelessWidget {
               Navigator.pushNamed(context, '/login');
             },
             icon: Icon(Icons.logout, color: Colors.black),
+          ),
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return DeclarationPage(); // Show the DeclarationPage as a dialog
+                },
+              );
+            },
+            icon: Icon(Icons.info, color: Colors.black),
           ),
         ],
         title: Text(

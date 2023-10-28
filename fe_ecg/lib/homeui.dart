@@ -268,6 +268,7 @@ import 'package:fe_ecg/constants/server.dart';
 import 'package:fe_ecg/BottomNavigationBarWidget.dart';
 import 'package:provider/provider.dart';
 import 'package:fe_ecg/models/user.dart';
+import 'package:fe_ecg/declaration.dart';
 import 'package:fe_ecg/models/record.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -372,6 +373,18 @@ class _HomePageState extends State<homeScreen> {
                   Navigator.pushNamed(context, '/login');
                 },
                 icon: Icon(Icons.logout, color: Colors.black),
+              ),
+              // Add a button in the app bar to show the declaration information
+              IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return DeclarationPage(); // Show the DeclarationPage as a dialog
+                    },
+                  );
+                },
+                icon: Icon(Icons.info, color: Colors.black),
               ),
             ],
             centerTitle: false,

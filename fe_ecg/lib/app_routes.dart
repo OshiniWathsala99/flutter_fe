@@ -7,4 +7,5 @@ class AppRoutes {
   static const String history = '/history';
   static const String verification = '/verify';
   static const String analyzing = '/analysing';
+  static const String declaration = '/declaration';
 }

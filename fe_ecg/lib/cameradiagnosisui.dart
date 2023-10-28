@@ -420,6 +420,7 @@ import 'package:fe_ecg/analysing.dart';
 import 'package:http_parser/http_parser.dart';
 import 'dart:typed_data';
 import 'dart:math';
+import 'package:fe_ecg/declaration.dart';
 
 import 'package:provider/provider.dart';
 
@@ -650,6 +651,17 @@ class _CameraDiagnosisScreenState extends State<CameraDiagnosisScreen> {
                   Navigator.pushNamed(context, '/login');
                 },
                 icon: Icon(Icons.logout, color: Colors.black),
+              ),
+              IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return DeclarationPage(); // Show the DeclarationPage as a dialog
+                    },
+                  );
+                },
+                icon: Icon(Icons.info, color: Colors.black),
               ),
             ],
             title: Text(
