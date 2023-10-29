@@ -21,13 +21,13 @@ class VerificationScreen extends StatelessWidget {
             TextButton(
               child: Text('Cancel'),
               onPressed: () {
-                Navigator.of(context).pop(false); // Return false on cancel
+                Navigator.of(context).pop(false);
               },
             ),
             TextButton(
               child: Text('Confirm'),
               onPressed: () {
-                Navigator.of(context).pop(true); // Return true on confirmation
+                Navigator.of(context).pop(true);
               },
             ),
           ],
@@ -55,7 +55,7 @@ class VerificationScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return DeclarationPage(); // Show the DeclarationPage as a dialog
+                  return DeclarationPage();
                 },
               );
             },
@@ -68,8 +68,7 @@ class VerificationScreen extends StatelessWidget {
         ),
       ),
       body: buildBody(context),
-      backgroundColor:
-          Color.fromARGB(255, 85, 228, 247), // Set the background color here
+      backgroundColor: Color.fromARGB(255, 76, 218, 239),
     );
   }
 
@@ -90,7 +89,7 @@ class VerificationScreen extends StatelessWidget {
                     fontSize: 25,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w700,
-                    height: 1.4, // Adjust this value for line spacing
+                    height: 1.4,
                   ),
                 ),
               ),
@@ -105,15 +104,13 @@ class VerificationScreen extends StatelessWidget {
                   fontSize: 19,
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w700,
-                  height: 1.4, // Adjust this value for line spacing
+                  height: 1.4,
                 ),
               ),
             ),
-
-            SizedBox(height: 100), // Added 30 pixels of padding here
+            SizedBox(height: 100),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 25.0), // Left and right padding
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Text(
                 'To Future Verification Send your Report to Medical Professional...',
                 textAlign: TextAlign.center,
@@ -121,8 +118,8 @@ class VerificationScreen extends StatelessWidget {
                   color: Colors.black.withOpacity(0.88),
                   fontSize: 19,
                   fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w700,
-                  height: 1.4, // Adjust this value for line spacing
+                  //fontWeight: FontWeight.w700,
+                  height: 1.4,
                 ),
               ),
             ),
@@ -133,9 +130,6 @@ class VerificationScreen extends StatelessWidget {
                 onPressed: () async {
                   bool confirmation = await _showConfirmationDialog(context);
                   if (confirmation) {
-                    // Verification Function -> Firebase
-
-                    // Show success message
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content:

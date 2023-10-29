@@ -10,7 +10,7 @@ class DeclarationPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(16.0), // Added padding
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 "     This Model Has 80% accuracy in diagnosing diseases and 90% accuracy in identifying arrhythmia absence patients. To get 100% accuracy result, please follow the 2-Step Verification as well.",
                 style: TextStyle(
@@ -23,8 +23,7 @@ class DeclarationPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context)
-                    .pop(); // Close the dialog when the "OK" button is pressed
+                Navigator.of(context).pop();
               },
               child: Text("OK"),
             ),

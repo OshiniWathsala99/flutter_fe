@@ -164,12 +164,12 @@ class _MyAppState extends State<DiagnosisScreen> {
                               fontSize: 19,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w700,
-                              height: 1.4, // Adjust this value for line spacing
+                              height: 1.4,
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(30.0), // Added padding
+                          padding: EdgeInsets.all(30.0),
                           child: Text(
                             'Please Capture Lead II and Lead V ECG as two images before going to the next step...',
                             textAlign: TextAlign.center,
@@ -178,19 +178,17 @@ class _MyAppState extends State<DiagnosisScreen> {
                               fontSize: 19,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w700,
-                              height: 1.4, // Adjust this value for line spacing
+                              height: 1.4,
                             ),
                           ),
                         ),
-                        SizedBox(height: 80.0), // Added bottom padding
+                        SizedBox(height: 80.0),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/camdiagnosis');
                           },
                           child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    40.0), // Increase horizontal padding
+                            padding: EdgeInsets.symmetric(horizontal: 40.0),
                             child: ElevatedButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, '/camdiagnosis');
@@ -218,7 +216,7 @@ class _MyAppState extends State<DiagnosisScreen> {
                                 height: 10,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Color(0xff1ecbe1), // #1ecbe1 color
+                                  color: Color(0xff1ecbe1),
                                 ),
                               ),
                             ),

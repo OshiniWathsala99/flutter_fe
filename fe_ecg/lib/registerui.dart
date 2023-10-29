@@ -34,20 +34,17 @@ class _RegistrationFormState extends State<RegistrationForm> {
   late String _pre;
 
   Future<void> createUser() async {
-    // Define the API endpoint URL
     final apiUrl =
         Uri.parse('https://e2c3-112-134-175-95.ngrok-free.app/user/add');
 
     try {
-      // Create a JSON payload with the data you want to send
       final requestData = {
-        "name": _name, // Replace with the actual value of _name
-        "age": _age, // Replace with the actual value of _age
-        "previous": _pre, // Replace with the actual value of _pre
-        "email": _email, // Replace with the actual value of _email
+        "name": _name,
+        "age": _age,
+        "previous": _pre,
+        "email": _email,
       };
 
-      // Send the POST request with the JSON payload
       final response = await http.post(
         apiUrl,
         headers: {
@@ -69,7 +66,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
     }
   }
 
-// Call the createUser function to send the POST request
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -235,10 +231,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue,
                   shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(0.0), // No rounded corners
-                  ), // Set the button's height
-                  minimumSize: Size(double.infinity, 50), // Make it full width
+                    borderRadius: BorderRadius.circular(0.0),
+                  ),
+                  minimumSize: Size(double.infinity, 50),
                 ),
                 child: Text('Register'),
               ),

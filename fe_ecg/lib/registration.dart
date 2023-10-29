@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-// Custom error codes
 const int registrationSuccess = 1;
 const int weakPassword = 2;
 const int emailAlreadyInUse = 3;

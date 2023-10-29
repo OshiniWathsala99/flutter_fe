@@ -10,9 +10,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          // Width of the form container
           padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 50),
-
           child: LoginForm(),
         ),
       ),
@@ -44,7 +42,6 @@ class _LoginFormState extends State<LoginForm> {
                 height: 170,
                 decoration: BoxDecoration(),
                 child: ClipRRect(
-                  // borderRadius: BorderRadius.circular(75),
                   child: Image.asset(
                     'assets/logo.jpg',
                     // fit: BoxFit.cover,
@@ -121,11 +118,10 @@ class _LoginFormState extends State<LoginForm> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue, // Blue background
+                    primary: Colors.blue,
                     minimumSize: Size(200, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          0), // Rectangle with sharp corners
+                      borderRadius: BorderRadius.circular(0),
                     ),
                   ),
                   child: Text('Login'),

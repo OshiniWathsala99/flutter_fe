@@ -1,8 +1,5 @@
-//
-
 import 'package:firebase_auth/firebase_auth.dart';
 
-// Custom error codes
 const int loginSuccess = 1;
 const int invalidEmailPassword = 2;
 const int userNotFound = 3;

@@ -1,7 +1,6 @@
 class ServerConfig {
   // Server Details
-  static const String serverUrl =
-      'https://d806-112-134-170-195.ngrok-free.app'; // Put NGROK URL
+  static const String serverUrl = 'https://d806-112-134-170-195.ngrok-free.app';
 
   // API Routes
   static const String loginRoute = '/api/login';

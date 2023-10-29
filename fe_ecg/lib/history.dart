@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fe_ecg/BottomNavigationBarWidget.dart';
-import 'package:provider/provider.dart'; // Import provider package
-import 'package:fe_ecg/models/user.dart'; // Import the User model
+import 'package:provider/provider.dart';
+import 'package:fe_ecg/models/user.dart';
 
 class historyscreen extends StatefulWidget {
   @override
@@ -12,14 +12,13 @@ class historyscreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<historyscreen> {
-  int currentIndex = 2; // Change to the correct index for 'History'.
+  int currentIndex = 2;
 
   void onTabTapped(int index) {
     setState(() {
       currentIndex = index;
     });
 
-    // Handle navigation based on the selected index
     switch (index) {
       case 0:
         Navigator.pushReplacementNamed(context, '/');
@@ -42,7 +41,6 @@ class _HistoryScreenState extends State<historyscreen> {
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       setState(() {
-        // Handle dynamic types here
         progressData = data.map<String, Map<String, String>>((key, value) {
           return MapEntry(key, Map<String, String>.from(value));
         });
@@ -80,8 +78,8 @@ class _HistoryScreenState extends State<historyscreen> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: DataTable(
-            headingRowHeight: 50, // Set the heading row height
-            dataRowHeight: 50, // Adjust the data row height
+            headingRowHeight: 50,
+            dataRowHeight: 50,
             columns: <DataColumn>[
               DataColumn(
                 label: Text('Date',
@@ -112,8 +110,7 @@ class _HistoryScreenState extends State<historyscreen> {
                 cells: <DataCell>[
                   DataCell(Text(values['Date'] ?? 'N/A')),
                   DataCell(Text(values['prediction'] ?? 'N/A')),
-                  DataCell(Text(
-                      values['DoctorVeri'] ?? 'N/A')), // Display 'user' data
+                  DataCell(Text(values['DoctorVeri'] ?? 'N/A')),
                 ],
               );
             }).toList(),
